@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <input placeholder="Search..." type="text" id="search-term">
+            <button id="search"><i class="fas fa-search"></i></button>
+        </header>
+        <div class="fav-container">
+            <h3>Favorite meals</h3>
+            <ul class="fav-meals" id=fav-meals>
+            </ul>
+        </div>
+        <div class="meals" id="meals">
+        </div>
+        <div class="popup-container hidden" id="meal-popup">
+            <div class="popup">
+                <button id="close-popup" class="close-popup">
+                <i class="fas fa-times"></i>
+            </button>
+                <div class="meal-info" id="meal-info"></div>
+            </div>
+        </div>
+        <div class="arrow">
+
+            <button id="next-arrow" class="arrow arrow-next"><i class="fas fa-angle-right"></i></button>
+            <button id="previous-arrow" class="arrow arrow-previous"><i class="fas fa-angle-left"></i></button>
+        </div>
+
+    </div>
+</body>
+
+</html>
