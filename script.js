@@ -54,12 +54,7 @@ function addMeal(mealData, random = false) {
 
     meal.innerHTML = `
         <div class="meal-header">
-            ${
-                random
-                    ? `
-            <span class="random"> ${mealData.strCategory} </span>`
-                    : ""
-            }
+            <span class="random"> ${mealData.strCategory} </span>
             <img class="meal-img"
                 src="${mealData.strMealThumb}"
                 alt="${mealData.strMeal}"
@@ -87,7 +82,7 @@ function addMeal(mealData, random = false) {
         fetchFavMeals();
     });
     const mealImg = meal.querySelector(".meal-img");
-    
+
     mealImg.addEventListener("click", () => {
         showMealInfo(mealData);
     });
@@ -98,7 +93,9 @@ function addMeal(mealData, random = false) {
 function addMealLS(mealId) {
     const mealIds = getMealsLS();
 
-    localStorage.setItem("mealIds", JSON.stringify([...mealIds, mealId]));
+    if (!mealIds.includes(mealId)) {
+        localStorage.setItem("mealIds", JSON.stringify([...mealIds, mealId]));
+    }
 }
 
 function removeMealLS(mealId) {
@@ -157,7 +154,7 @@ function addMealFav(mealData) {
 
     favoriteContainer.appendChild(favMeal);
 }
-  
+
 function showMealInfo(mealData) {
     // clean it up
     mealInfoEl.innerHTML = "";
@@ -232,25 +229,24 @@ async function ShowAllMealsFindBySearch(){
    
 return meals;
 }
-async function ShowAllMeals(meals){
-    
+
+async function ShowAllMeals(meals){  
     if(meals){
         meals.forEach(meal => {
             addMeal(meal);
         });
     }
-return meals;
+    return meals;
 }
  
 searchBtn.addEventListener("click", async() => {
     ShowAllMealsFindBySearch();
 });
-
-searchTerm.addEventListener("keyup", async function(event) {
-    if (event.hokeyCode === 13) {
-      ShowAllMealsFindBySearch();
+searchTerm.addEventListener("keydown", function (e) {
+    if (e.keyCode === 13) {
+        ShowAllMealsFindBySearch();
     }
-  });
+});
 
 popupCloseBtn.addEventListener("click", () => {
     mealPopup.classList.add("hidden");
